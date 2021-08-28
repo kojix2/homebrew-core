@@ -3,7 +3,7 @@ class Archey < Formula
   homepage "https://obihann.github.io/archey-osx/"
   license "GPL-2.0-or-later"
   revision 1
-  head "https://github.com/obihann/archey-osx.git"
+  head "https://github.com/obihann/archey-osx.git", branch: "master"
 
   stable do
     url "https://github.com/obihann/archey-osx/archive/1.6.0.tar.gz"
@@ -25,6 +25,8 @@ class Archey < Formula
   end
 
   deprecate! date: "2017-04-28", because: :repo_archived
+
+  depends_on :macos
 
   conflicts_with "archey4", because: "both install `archey` binaries"
 

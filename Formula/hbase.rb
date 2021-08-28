@@ -7,10 +7,11 @@ class Hbase < Formula
   license "Apache-2.0"
 
   bottle do
-    sha256 arm64_big_sur: "7a0178466daa5ac2956269e16b2ef14b47b8ef6acae03f9926ae78697cd562ec"
-    sha256 big_sur:       "88c89d28ecdecf7787a1f89450a54d9446cd412fc58d8a8459cc554ccda5893b"
-    sha256 catalina:      "a292c7c6a3cdaea1f58a721c6dbc6dff80fc9cb0b9882dc7136da028c80aa3d1"
-    sha256 mojave:        "619e320c7a40c49bdd24f5b319d8dae72c7afffbfca0841872bb12f123865d0e"
+    rebuild 1
+    sha256 arm64_big_sur: "81780e60d8e593165365fd5113d5602a0438482db4983da90c37aabd473e403e"
+    sha256 big_sur:       "b794e8d9c358441726196a905f0ece2136f8a91ee3c9e91f1a1c31e8a5a63aed"
+    sha256 catalina:      "316f0a2cfd4cbfd04e78a7dae813e386651082e9437ef957946b9d1cafd72de7"
+    sha256 mojave:        "ee24a9af687b09c40138cf6b11007616681b19ed5f1279edd2325465285e7d08"
   end
 
   depends_on "ant" => :build
@@ -103,52 +104,24 @@ class Hbase < Formula
     (var/"run/hbase").mkpath
   end
 
-  plist_options manual: "#{HOMEBREW_PREFIX}/opt/hbase/bin/start-hbase.sh"
-
-  def plist
-    <<~EOS
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-      <dict>
-        <key>KeepAlive</key>
-        <true/>
-        <key>Label</key>
-        <string>#{plist_name}</string>
-        <key>EnvironmentVariables</key>
-        <dict>
-         <key>HBASE_MASTER_OPTS</key><string> -XX:PermSize=128m -XX:MaxPermSize=128m</string>
-         <key>HBASE_LOG_DIR</key><string>#{var}/hbase</string>
-         <key>HBASE_HOME</key><string>#{opt_libexec}</string>
-         <key>HBASE_SECURITY_LOGGER</key><string>INFO,RFAS</string>
-         <key>HBASE_PID_DIR</key><string>#{var}/run/hbase</string>
-         <key>HBASE_NICENESS</key><string>0</string>
-         <key>HBASE_IDENT_STRING</key><string>root</string>
-         <key>HBASE_REGIONSERVER_OPTS</key><string> -XX:PermSize=128m -XX:MaxPermSize=128m</string>
-         <key>HBASE_OPTS</key><string>-XX:+UseConcMarkSweepGC</string>
-         <key>HBASE_ROOT_LOGGER</key><string>INFO,RFA</string>
-         <key>HBASE_LOG_PREFIX</key><string>hbase-root-master</string>
-         <key>HBASE_LOGFILE</key><string>hbase-root-master.log</string>
-        </dict>
-        <key>ProgramArguments</key>
-        <array>
-          <string>#{opt_bin}/hbase</string>
-          <string>--config</string>
-          <string>#{opt_libexec}/conf</string>
-          <string>master</string>
-          <string>start</string>
-        </array>
-        <key>RunAtLoad</key>
-        <true/>
-        <key>WorkingDirectory</key>
-        <string>#{HOMEBREW_PREFIX}</string>
-        <key>StandardOutPath</key>
-        <string>#{var}/hbase/hbase.log</string>
-        <key>StandardErrorPath</key>
-        <string>#{var}/hbase/hbase.err</string>
-      </dict>
-      </plist>
-    EOS
+  service do
+    run [opt_bin/"hbase", "--config", opt_libexec/"conf", "master", "start"]
+    keep_alive true
+    working_dir HOMEBREW_PREFIX
+    log_path var/"hbase/hbase.log"
+    error_log_path var/"hbase/hbase.err"
+    environment_variables HBASE_HOME:              opt_libexec,
+                          HBASE_IDENT_STRING:      "root",
+                          HBASE_LOG_DIR:           var/"hbase",
+                          HBASE_LOG_PREFIX:        "hbase-root-master",
+                          HBASE_LOGFILE:           "hbase-root-master.log",
+                          HBASE_MASTER_OPTS:       " -XX:PermSize=128m -XX:MaxPermSize=128m",
+                          HBASE_NICENESS:          "0",
+                          HBASE_OPTS:              "-XX:+UseConcMarkSweepGC",
+                          HBASE_PID_DIR:           var/"run/hbase",
+                          HBASE_REGIONSERVER_OPTS: " -XX:PermSize=128m -XX:MaxPermSize=128m",
+                          HBASE_ROOT_LOGGER:       "INFO,RFA",
+                          HBASE_SECURITY_LOGGER:   "INFO,RFAS"
   end
 
   test do

@@ -4,19 +4,35 @@ class YubikeyAgent < Formula
   url "https://github.com/FiloSottile/yubikey-agent/archive/v0.1.5.tar.gz"
   sha256 "724b21f05d3f822acd222ecc8a5d8ca64c82d5304013e088d2262795da81ca4f"
   license "BSD-3-Clause"
-  head "https://filippo.io/yubikey-agent", using: :git
+  head "https://github.com/FiloSottile/yubikey-agent.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "efffadb45cd18617afdd4ba682d8a198c17f37a45c4daceffe4233b1eb2b7cb4"
-    sha256 cellar: :any_skip_relocation, big_sur:       "b6848be5e33c4a19beab0d30667e943eae86ebada5f411645e13216568e366fb"
-    sha256 cellar: :any_skip_relocation, catalina:      "4610af306fa6ea29b93a290e3605822483cfd484c1ee2228dbed8a4c7eeff8f7"
-    sha256 cellar: :any_skip_relocation, mojave:        "2b0c46b8938baa3fba070a23da7475e4d502cf9142330a8c42f102e782a90f64"
+    rebuild 2
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "d00bf8d22edfe56f5352e59ff3c72d91e98dcf64d4acc3d1c7a5edbadd61402d"
+    sha256 cellar: :any_skip_relocation, big_sur:       "29df3472e1a5e57ed20f54cef3a5c4e87662e5c64f55338b01239741795447c3"
+    sha256 cellar: :any_skip_relocation, catalina:      "4e7259eeb5ddd924251e7c73f6ae6904804193e4fee4d49e95fc02f211d3ac2e"
+    sha256 cellar: :any_skip_relocation, mojave:        "bf031ee9b131fa3646b624bb6c84a0fc5b02f3abd6b693c5d5c488e58bb4e89c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cb43a6764a9caa2c39fba8bdd5ebe79c677923b004f8c2280213bb4afc298d17"
   end
 
   depends_on "go" => :build
 
+  uses_from_macos "pcsc-lite"
+
+  on_linux do
+    depends_on "pkg-config" => :build
+    depends_on "pinentry"
+  end
+
+  # Support go 1.17, remove when upstream patch is merged/released
+  # https://github.com/FiloSottile/yubikey-agent/pull/99
+  patch do
+    url "https://github.com/FiloSottile/yubikey-agent/commit/92e45828da1c33531f507625f41e3bdadfe3ee86.patch?full_index=1"
+    sha256 "605503152d3ea75072a98366994b65e4810c54e3dc690d8d47b9fb67ef47bd4d"
+  end
+
   def install
-    system "go", "build", *std_go_args, "-ldflags", "-X main.Version=v#{version}"
+    system "go", "build", *std_go_args(ldflags: "-s -w -X main.Version=v#{version}")
   end
 
   def post_install
@@ -31,38 +47,11 @@ class YubikeyAgent < Formula
     EOS
   end
 
-  plist_options manual: "yubikey-agent -l #{HOMEBREW_PREFIX}/var/run/yubikey-agent.sock"
-
-  def plist
-    <<~EOS
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-      <dict>
-        <key>Label</key>
-        <string>#{plist_name}</string>
-        <key>EnvironmentVariables</key>
-        <dict>
-          <key>PATH</key>
-          <string>/usr/bin:/bin:/usr/sbin:/sbin</string>
-        </dict>
-        <key>ProgramArguments</key>
-        <array>
-          <string>#{opt_bin}/yubikey-agent</string>
-          <string>-l</string>
-          <string>#{var}/run/yubikey-agent.sock</string>
-        </array>
-        <key>RunAtLoad</key><true/>
-        <key>KeepAlive</key><true/>
-        <key>ProcessType</key>
-        <string>Background</string>
-        <key>StandardErrorPath</key>
-        <string>#{var}/log/yubikey-agent.log</string>
-        <key>StandardOutPath</key>
-        <string>#{var}/log/yubikey-agent.log</string>
-      </dict>
-      </plist>
-    EOS
+  service do
+    run [opt_bin/"yubikey-agent", "-l", var/"run/yubikey-agent.sock"]
+    keep_alive true
+    log_path var/"log/yubikey-agent.log"
+    error_log_path var/"log/yubikey-agent.log"
   end
 
   test do

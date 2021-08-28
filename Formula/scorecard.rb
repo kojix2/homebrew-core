@@ -1,24 +1,24 @@
 class Scorecard < Formula
   desc "Security health metrics for Open Source"
   homepage "https://github.com/ossf/scorecard"
-  url "https://github.com/ossf/scorecard/archive/refs/tags/v2.1.0.tar.gz"
-  sha256 "10ad1aafba9db7bfe26e0a77f534d6175ba85f8d9d6d30dd2c4f50b0a5692dad"
+  url "https://github.com/ossf/scorecard/archive/refs/tags/v2.1.3.tar.gz"
+  sha256 "d42dfc3e75272d95bf4c6ad81b56d406a1a5ee9c25d558a94255c9c89feb754e"
   license "Apache-2.0"
   head "https://github.com/ossf/scorecard.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "a747fe3a71d3465f73216e7734072600efbbba57e6697090987c1760cf477a89"
-    sha256 cellar: :any_skip_relocation, big_sur:       "df8bce028f6c950331399680a3b66e089935272f2425fd3ab259cef718416c81"
-    sha256 cellar: :any_skip_relocation, catalina:      "565e522419b7f7e3da759c8d20da2213309fbd1cc43ceedfa7a8efa4f4a1f894"
-    sha256 cellar: :any_skip_relocation, mojave:        "4320ab74ea78752e4c296147e1388b243f5d46640a2ed5efb174c7f6b8f4f478"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "8841bbb0b19f57d290cd71336d86085cea846a126b358cfd54e4ba050e4e485e"
+    sha256 cellar: :any_skip_relocation, big_sur:       "e6df4dc6b6119a91d3025547226d1221c113dc3fc5f4b1822516c60cd4425335"
+    sha256 cellar: :any_skip_relocation, catalina:      "b45a9deb9088c49751545a899f7d5149eb91373861d1559107b7c3d2da25ca84"
+    sha256 cellar: :any_skip_relocation, mojave:        "cccbc97bb6291eff26cb219f1a6d14af334d8d1c3e43ad792742015e94aee4eb"
   end
 
   depends_on "go" => :build
 
   def install
     system "go", "build", *std_go_args(ldflags: "-s -w")
-    cd("checks/main") { system "go", "run", "main.go" }
-    doc.install "checks/checks.md"
+    cd("docs/checks/generate") { system "go", "run", "main.go" }
+    doc.install "docs/checks.md"
   end
 
   test do

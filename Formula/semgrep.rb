@@ -4,8 +4,8 @@ class Semgrep < Formula
   desc "Easily detect and prevent bugs and anti-patterns in your codebase"
   homepage "https://semgrep.dev"
   url "https://github.com/returntocorp/semgrep.git",
-      tag:      "v0.60.0",
-      revision: "bebaa1d307b638dba47f188e75246f93f09c1600"
+      tag:      "v0.63.0",
+      revision: "ddf6726caf741f676adb93d552384069c4b152e5"
   license "LGPL-2.1-only"
   head "https://github.com/returntocorp/semgrep.git", branch: "develop"
 
@@ -15,11 +15,11 @@ class Semgrep < Formula
   end
 
   bottle do
-    sha256 cellar: :any, arm64_big_sur: "eef09056edaf6b813f3056c9e6a1c9c1eb7ce1f56cfd898026a51a808548875f"
-    sha256 cellar: :any, big_sur:       "fc8aa38ab7cee504bd3b69c93e37c6f66ba6796e369487d963da5f9af0db363e"
-    sha256 cellar: :any, catalina:      "c7f6f738a6aaa8a60eaddc8bbd7caf7410a1f09861a76d056c3507644785d27e"
-    sha256 cellar: :any, mojave:        "01bebb3c4bd45ec5c63be78e476f834dead040984c2fc9f3d6a561d312ed3b8d"
-    sha256               x86_64_linux:  "6f8cc449c482284dfe9479445c6202d1dc6a0709ab70da5eef83da9f5abd7c18"
+    sha256 cellar: :any, arm64_big_sur: "ee8b82f0dc357e757ded92e2142fb9d8e60ff7ed1dff2200b14a84e08bc153e0"
+    sha256 cellar: :any, big_sur:       "64c241fc59830433b218be8769d173032c15506ec9fa9539cb5fcdf8d48b381a"
+    sha256 cellar: :any, catalina:      "2955e861e29a35bd560b7ef108b9a02c8e7fd726ea89caab95fd8d265e5f1c9b"
+    sha256 cellar: :any, mojave:        "919c1875755ead3bf9641708f5e4fc3b65c7d2a4147e2403b0e6e3b8771f5ef7"
+    sha256               x86_64_linux:  "f6e00b4e41b184ca7ba2e6cec0e52780c2fc143ed941295c2cdb9e20047bb5a6"
   end
 
   depends_on "cmake" => :build
@@ -40,14 +40,6 @@ class Semgrep < Formula
 
   fails_with gcc: "5"
 
-  # To update, temporarily comment out this resource and run `brew update-python-resources semgrep`
-  # Then uncomment this resource and manually modify the commit hash based on
-  # https://github.com/returntocorp/semgrep/blob/#{tag}/scripts/install-tree-sitter-runtime
-  resource "ocaml-tree-sitter" do
-    url "https://github.com/returntocorp/ocaml-tree-sitter-semgrep/archive/2263f3f418f97a849cb9dfeb0373bc9a3a10837c.tar.gz"
-    sha256 "f257acdcd1c42c4bbe81ad11ccbadf5211b2b1a062ece3ca04945776f89ada8a"
-  end
-
   resource "attrs" do
     url "https://files.pythonhosted.org/packages/ed/d6/3ebca4ca65157c12bd08a63e20ac0bdc21ac7f3694040711f9fd073c0ffb/attrs-21.2.0.tar.gz"
     sha256 "ef6aaac3ca6cd92904cdd0d83f629a15f18053ec84e6432106f7a4d04ae4f5fb"
@@ -64,8 +56,8 @@ class Semgrep < Formula
   end
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/37/fd/05a04d7e14548474d30d90ad0db5d90ee2ba55cd967511a354cf88b534f1/charset-normalizer-2.0.3.tar.gz"
-    sha256 "c46c3ace2d744cfbdebceaa3c19ae691f53ae621b39fd7570f59d14fb7f2fd12"
+    url "https://files.pythonhosted.org/packages/e7/4e/2af0238001648ded297fb54ceb425ca26faa15b341b4fac5371d3938666e/charset-normalizer-2.0.4.tar.gz"
+    sha256 "f23667ebe1084be45f6ae0538e4a5a865206544097e4e8bbcacf42cd02a348f3"
   end
 
   resource "colorama" do
@@ -109,8 +101,8 @@ class Semgrep < Formula
   end
 
   resource "ruamel.yaml" do
-    url "https://files.pythonhosted.org/packages/83/59/4f576abb336d30b3d47061717224be714a9dc39c774061c34cb41c1795cf/ruamel.yaml-0.17.10.tar.gz"
-    sha256 "106bc8d6dc6a0ff7c9196a47570432036f41d556b779c6b4e618085f57e39e67"
+    url "https://files.pythonhosted.org/packages/6e/ac/a4c038a2e48a8930a7b04711fec48f779875ed3a3d3941663413454b8fa7/ruamel.yaml-0.17.14.tar.gz"
+    sha256 "4185fcfa9e037fea9ffd0bb6172354a03ec98c21e462355d72e068c74e493512"
   end
 
   resource "ruamel.yaml.clib" do
@@ -124,8 +116,8 @@ class Semgrep < Formula
   end
 
   resource "tqdm" do
-    url "https://files.pythonhosted.org/packages/0d/dd/78f7e080d3bfc87fc19bed54513b430659d38efb2d9ea6e3ad815a665a02/tqdm-4.61.2.tar.gz"
-    sha256 "8bb94db0d4468fea27d004a0f1d1c02da3cdedc00fe491c0de986b76a04d6b0a"
+    url "https://files.pythonhosted.org/packages/37/e5/1b54ef934d731576d0145bc8ae22da5b410f96922cec52b91cc29d3ff1b6/tqdm-4.62.2.tar.gz"
+    sha256 "a4d6d112e507ef98513ac119ead1159d286deab17dffedd96921412c2d236ff5"
   end
 
   resource "urllib3" do
@@ -139,8 +131,6 @@ class Semgrep < Formula
   end
 
   def install
-    (buildpath/"ocaml-tree-sitter").install resource("ocaml-tree-sitter")
-
     ENV.deparallelize
     Dir.mktmpdir("opamroot") do |opamroot|
       ENV["OPAMROOT"] = opamroot
@@ -156,15 +146,13 @@ class Semgrep < Formula
 
       # Manually run steps from `opam exec -- make setup` to link Homebrew's tree-sitter
       system "opam", "update", "-y"
-      ln_s "../../../ocaml-tree-sitter/src", "semgrep-core/src/ocaml-tree-sitter/src"
-      ln_s "../ocaml-tree-sitter/tree-sitter.opam", "semgrep-core/tree-sitter.opam"
-      system "opam", "install", "-y", "--deps-only", "./semgrep-core/src/pfff"
-      system "opam", "install", "-y", "--deps-only", "./semgrep-core"
 
-      # Install tree-sitter
-      cd "ocaml-tree-sitter" do
-        system "opam", "install", "-y", "."
-      end
+      # We pass --no-depexts so as to disable the check for pkg-config.
+      # It seems to not be found when building on ubuntu
+      # See discussion on https://github.com/Homebrew/homebrew-core/pull/82693
+      system "opam", "install", "-y", "--deps-only", "--no-depexts", "./semgrep-core/src/pfff"
+      system "opam", "install", "-y", "--deps-only", "--no-depexts", "./semgrep-core/src/ocaml-tree-sitter-core"
+      system "opam", "install", "-y", "--deps-only", "--no-depexts", "./semgrep-core"
 
       # Install semgrep-core and spacegrep
       cd "semgrep-core" do
@@ -193,6 +181,20 @@ class Semgrep < Formula
     EOS
 
     output = shell_output("#{bin}/semgrep script.py -l python -e '$X == $X'")
+    assert_match "a + b == a + b", output
+
+    (testpath/"script.ts").write <<~EOS
+      function test_equal() {
+        a = 1;
+        b = 2;
+        //ERROR: match
+        if (a + b == a + b)
+            return 1;
+        return 0;
+      }
+    EOS
+
+    output = shell_output("#{bin}/semgrep script.ts -l ts -e '$X == $X'")
     assert_match "a + b == a + b", output
   end
 end

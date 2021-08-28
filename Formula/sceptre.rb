@@ -3,29 +3,29 @@ class Sceptre < Formula
 
   desc "Build better AWS infrastructure"
   homepage "https://sceptre.cloudreach.com"
-  url "https://files.pythonhosted.org/packages/28/05/3b4e955fa88a7d24aad0d14e3e5d7b97ceb8d4b5ff37a9a308e27a13ea32/sceptre-2.6.1.tar.gz"
-  sha256 "94c9df23521df522a2f057f45e0a09af0a0a8370e05a1d47ed9f0075d3bec17d"
+  url "https://files.pythonhosted.org/packages/40/06/6239b72d9d55d47d9164bdfada3e0063e5baca6287601bc889729ae889af/sceptre-2.6.3.tar.gz"
+  sha256 "550473ae9dd3d5b2c54395bdc01f230bea1fb57311754dcbed7f787845b84c92"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "53683656d191aa629b8676dd878cc810ad9f0dd7cf6f9ebb4547d00a79be0908"
-    sha256 cellar: :any_skip_relocation, big_sur:       "b6c032a50662f441b8ba462caed35478a7b350ca88d054dfc7f6491c83ee36ec"
-    sha256 cellar: :any_skip_relocation, catalina:      "a6a28cf5d9f7e9ab5e3a3d93617f623817b651db9d106b7b4e3c7826f8173fb4"
-    sha256 cellar: :any_skip_relocation, mojave:        "574f140eb0fb541a5993c649fde9c67a56d1f56d50416f45496bfc6457541ce0"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "af9bda902b32b823ca8526fdab1009c35d65feb6364f68dd3707aa990145b278"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "00f4687c01403d63aaad76986c626b7d14cba5a1c4d1182cc2b3b6ac6f63a5b9"
+    sha256 cellar: :any_skip_relocation, big_sur:       "30fb1808ef410c3d7d1efe06ef34bcabd3f4b9900af9256af0bdd8f031efd7a3"
+    sha256 cellar: :any_skip_relocation, catalina:      "193ea72c2311abe56e3fd7557e18d7b5bcc7da892c5ca347ab4ffc64cbabd7ec"
+    sha256 cellar: :any_skip_relocation, mojave:        "73ccdaa2070aeb74acaab1637770cf1c4067508c3ee8b77c78698ceb61115c6f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0158fccbd85c3050e504c2cd23b5a4e05fa0abc6e385b47620a4b443137d2fb1"
   end
 
   depends_on "python@3.9"
   depends_on "six"
 
   resource "boto3" do
-    url "https://files.pythonhosted.org/packages/f0/53/f8e9ac6051fa0f5ad4a397198572cc3eb4157cf1b4cc98b6edf52928b0d7/boto3-1.18.11.tar.gz"
-    sha256 "ca675c724fa0fe05e992a7146cc5e1a3b3262c4323c83c7a8fcc69f9e5e47f8b"
+    url "https://files.pythonhosted.org/packages/b6/53/fa8c8ae8d3ddcb2a777fa19be27f8c9a46da257909a985a83ddaf4c7445e/boto3-1.18.21.tar.gz"
+    sha256 "00748c760dc30be61c6db4b092718f6a9f8d27c767da0e232695a65adb75cde8"
   end
 
   resource "botocore" do
-    url "https://files.pythonhosted.org/packages/b2/1b/a6f79cf60b3f0317eba52ab0d766250f8ac8c9a35314168dacb5df6dac99/botocore-1.21.11.tar.gz"
-    sha256 "b5e9128a259fc0fe5a8c2b717f5d7e8a1321321981b5d5679939e12d4142c0f3"
+    url "https://files.pythonhosted.org/packages/39/c3/5f09f4bda60a30741880e772ce9d1ffba7d6c667e56646ac0e6ffc5269a3/botocore-1.21.21.tar.gz"
+    sha256 "12cfe74b0a5c44afb34bdd86c1f8ad74bc2ad9ec168eaed9040ef70cb3db944f"
   end
 
   resource "certifi" do

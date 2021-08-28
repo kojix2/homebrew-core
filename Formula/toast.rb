@@ -1,16 +1,16 @@
 class Toast < Formula
   desc "Tool for running tasks in containers"
   homepage "https://github.com/stepchowfun/toast"
-  url "https://github.com/stepchowfun/toast/archive/v0.38.0.tar.gz"
-  sha256 "61272e74c40493d793b77159689b9dad32c9040ceca62b1d118189d3f7ac1858"
+  url "https://github.com/stepchowfun/toast/archive/v0.42.1.tar.gz"
+  sha256 "91a8a30b52fef41f94c0d2ee9a2af05dbfa68e9b83f5dc5ec8c2a4ddacb199fd"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "a8cf7712f0996b7fe116afb208e874fd14da2fd6f0651052d2b5b77894b5901b"
-    sha256 cellar: :any_skip_relocation, big_sur:       "63f32de44e88fbc8ec7baa8e801767f012f5cef9c7e83d233073346c6f883dcd"
-    sha256 cellar: :any_skip_relocation, catalina:      "79a4129a24fa78a863eb5ef9e759cc8dc2f2014b6d3021ab1f690897b24c80c1"
-    sha256 cellar: :any_skip_relocation, mojave:        "3fe5fafd1c5fb50a30996c7779ebc53c5cd3ad588c3fd49a58447ba8063e4519"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "fc111f146a51adf74960ab1da9700952bf6568b2bd10d143bebbb8c1a43cbf15"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "68a299162630252739170b49102ab7985ea7ffe9e6a14f434d0ab3ca1b32ff58"
+    sha256 cellar: :any_skip_relocation, big_sur:       "5ff8c19ea1b487773e499093de909a1c6d40d784731f8f2b6aaad73a8bafc100"
+    sha256 cellar: :any_skip_relocation, catalina:      "9a391d91a99e7a483548ccbf07023c0087d3aa18e9b7509fd3efd717fc2a4e42"
+    sha256 cellar: :any_skip_relocation, mojave:        "af0532ad1a71b42659e64e9ce0e84c41f44b6e427fc11b521aed146b87e43e3c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5ba118fdcb028880926872f4c6cd945426236769f09c41dc72d331ea414c3275"
   end
 
   depends_on "rust" => :build

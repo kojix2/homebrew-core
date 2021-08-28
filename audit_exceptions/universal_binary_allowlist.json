@@ -1,11 +1,13 @@
 [
-  "ask-cli",
   "babel",
   "cdktf",
+  "code-server",
   "contentful-cli",
+  "firebase-cli",
   "gatsby-cli",
   "gitversion",
   "infer",
+  "joplin-cli",
   "llvm",
   "llvm@11",
   "llvm@7",
@@ -18,6 +20,5 @@
   "openjdk",
   "openjdk@11",
   "serverless",
-  "sourcery",
-  "webpack"
+  "sourcery"
 ]

@@ -6,16 +6,10 @@ class RomTools < Formula
   version "0.234"
   sha256 "6b729494c0e63fd974061c11e860667164e85c20890f60eade048e3e4e5c00cd"
   license "GPL-2.0-or-later"
-  head "https://github.com/mamedev/mame.git"
+  head "https://github.com/mamedev/mame.git", branch: "master"
 
-  # MAME tags (and filenames) are formatted like `mame0226`, so livecheck will
-  # report the version like `0226`. We work around this by matching the link
-  # text for the release title, since it contains the properly formatted version
-  # (e.g., 0.226).
   livecheck do
-    url :stable
-    strategy :github_latest
-    regex(%r{release-header.*?/releases/tag/mame[._-]?\d+(?:\.\d+)*["' >]>MAME v?(\d+(?:\.\d+)+)}im)
+    formula "mame"
   end
 
   bottle do

@@ -2,17 +2,17 @@ class Goreleaser < Formula
   desc "Deliver Go binaries as fast and easily as possible"
   homepage "https://goreleaser.com/"
   url "https://github.com/goreleaser/goreleaser.git",
-      tag:      "v0.174.1",
-      revision: "a9f076b8fc669dc51e0e94cb1bce9e7ccdf82879"
+      tag:      "v0.176.0",
+      revision: "dd5ccf7170741e0303e90e81faf9073d03ac8f43"
   license "MIT"
   head "https://github.com/goreleaser/goreleaser.git"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_big_sur: "0f257e3b9e812c32aa934577f595aa384161ef6c64af280b6a809d17c195b5f6"
-    sha256 cellar: :any_skip_relocation, big_sur:       "143fe3604c1ba47069f1e08fcb8ac992d0bc04bf4a576f8a0fa6d15331b517c0"
-    sha256 cellar: :any_skip_relocation, catalina:      "a01e42b5e3678e1c2a90d9946641d903802fc059af636dfa83591ed699048a02"
-    sha256 cellar: :any_skip_relocation, mojave:        "c49ad0d31bbe211781fc47e3ecfa9cae09679dd2890ce25f53ef9241aeb7e742"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0d6f3fb5d241334685000b6bc8d22473437ca3646517a9e42fb8968e3517c893"
+    sha256 cellar: :any_skip_relocation, arm64_big_sur: "861248da00095ebefae40125bd0473b2dc1541a1a5aa74dfc388acc349f3a27a"
+    sha256 cellar: :any_skip_relocation, big_sur:       "676f8a8f59881a3fc4f09f77c2f4003abddb6ad3fee4bdc308dcfdfcc758db1e"
+    sha256 cellar: :any_skip_relocation, catalina:      "4f14162df53b94760c00d03f490c5588a3b3db95469241e597e8ab2ffd4b4fb3"
+    sha256 cellar: :any_skip_relocation, mojave:        "c01061381fe64f61deeca72a3be72b8d8f21d50aae9f423dd43ae53c53742ced"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "92929245d532edc9a13fe8ecb9633afbecbd76dd888ce1a2ac581610b8d363f4"
   end
 
   depends_on "go" => :build
