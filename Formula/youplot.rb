@@ -39,6 +39,7 @@ class Youplot < Formula
       "   C ┤■■■■ 40.0    ",
       "   D ┤■■■■■ 50.0   ",
       "     └           ┘ ",
+      "",
     ].join("\n")
     output_youplot = shell_output("#{bin}/youplot bar -o -w 10 -d, #{testpath}/test.csv")
     assert_equal expected_output, output_youplot
