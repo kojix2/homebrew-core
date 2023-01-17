@@ -31,15 +31,15 @@ class Youplot < Formula
       B,30
       C,40
       D,50
-      EOS
-    expected_output= <<-EOS
-     ┌           ┐ 
-   A ┤■■ 20.0      
-   B ┤■■■ 30.0     
-   C ┤■■■■ 40.0    
-   D ┤■■■■■ 50.0   
-     └           ┘ 
     EOS
+    expected_output = [
+      "     ┌           ┐ ",
+      "   A ┤■■ 20.0      ",
+      "   B ┤■■■ 30.0     ",
+      "   C ┤■■■■ 40.0    ",
+      "   D ┤■■■■■ 50.0   ",
+      "     └           ┘ ",
+    ].join("\n")
     output_youplot = shell_output("#{bin}/youplot bar -o -w 10 -d, #{testpath}/test.csv")
     assert_equal expected_output, output_youplot
     output_uplot = shell_output("#{bin}/youplot bar -o -w 10 -d, #{testpath}/test.csv")
