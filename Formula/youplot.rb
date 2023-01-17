@@ -1,11 +1,11 @@
 class Youplot < Formula
-  desc "A command line tool that draw plots on the terminal"
+  desc "Command-line tool that draw plots on the terminal"
   homepage "https://github.com/red-data-tools/YouPlot/"
   url "https://github.com/red-data-tools/YouPlot/archive/v0.4.5.tar.gz"
   sha256 "aa7339139bc4ea9aa0b2279e4e8052fde673a60ad47e87d50fde06626dc2b3c3"
   license "MIT"
 
-  depends_on "ruby"
+  uses_from_macos "ruby"
 
   resource "unicode_plot" do
     url "https://rubygems.org/downloads/unicode_plot-0.0.5.gem"
