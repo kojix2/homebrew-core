@@ -26,7 +26,23 @@ class Youplot < Formula
   end
 
   test do
-    system bin/"youplot --version"
-    system bin/"uplot --version"
+    (testpath/"test.csv").write <<~EOS
+      A,20
+      B,30
+      C,40
+      D,50
+      EOS
+    expected_output= <<-EOS
+     ┌           ┐ 
+   A ┤■■ 20.0      
+   B ┤■■■ 30.0     
+   C ┤■■■■ 40.0    
+   D ┤■■■■■ 50.0   
+     └           ┘ 
+    EOS
+    output_youplot = shell_output("#{bin}/youplot bar -o -w 10 -d, #{testpath}/test.csv")
+    assert_equal expected_output, output_youplot
+    output_uplot = shell_output("#{bin}/youplot bar -o -w 10 -d, #{testpath}/test.csv")
+    assert_equal expected_output, output_uplot
   end
 end
