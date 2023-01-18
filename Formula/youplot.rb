@@ -19,9 +19,13 @@ class Youplot < Formula
 
   def install
     ENV["GEM_HOME"] = libexec
-    system "gem", "build", "#{name}.gemspec"
-    system "gem", "install", "#{name}-#{version}.gem"
-    bin.install libexec/"bin/#{name}", libexec/"bin/uplot"
+    resources.each do |r|
+      system "gem", "install", r.cached_download, "--ignore-dependencies",
+             "--no-document", "--install-dir", libexec
+    end
+    system "gem", "build", "youplot.gemspec"
+    system "gem", "install", "--ignore-dependencies", "youplot-#{version}.gem"
+    bin.install libexec/"bin/youplot", libexec/"bin/uplot"
     bin.env_script_all_files(libexec/"bin", GEM_HOME: ENV["GEM_HOME"])
   end
 
