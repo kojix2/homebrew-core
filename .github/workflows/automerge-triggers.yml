@@ -9,9 +9,9 @@ on:
       - unlabeled
       - ready_for_review
 
-concurrency:
-  group: automerge-${{ github.event.number }}
-  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash -xeuo pipefail {0}
 
 jobs:
   check:
