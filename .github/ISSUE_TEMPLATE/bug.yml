@@ -1,6 +1,6 @@
 name: New issue for Reproducible Bug
 description: "If you're sure it's reproducible and not just your machine: submit an issue so we can investigate."
-labels: [bug]
+type: "Bug"
 body:
   - type: markdown
     attributes:
@@ -16,7 +16,7 @@ body:
       label: Verification
       description: Please verify that you've followed these steps. If you cannot truthfully check these boxes, open a discussion at https://github.com/orgs/Homebrew/discussions instead.
       options:
-        - label: My "`brew doctor` output" says `Your system is ready to brew.` and am still able to reproduce my issue.
+        - label: My `brew doctor` output says `Your system is ready to brew.` and am still able to reproduce my issue.
           required: true
         - label: I ran `brew update` and am still able to reproduce my issue.
           required: true
